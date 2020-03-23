@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 class View extends React.Component {
   constructor(props) {
@@ -10,7 +10,13 @@ class View extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="list">asd</div>
+        <div className="list">
+          <div className="menu">
+            <Link to="/products">
+              <button className="add">Back</button>
+            </Link>
+          </div>
+        </div>
       </React.Fragment>
     );
   }

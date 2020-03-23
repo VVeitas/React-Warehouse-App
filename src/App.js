@@ -5,6 +5,8 @@ import Homepage from "./Components/Homepage";
 import Products from "./Components/Products";
 import View from "./Components/View";
 import Create from "./Components/Create";
+import { ProductConsumer } from "./Context";
+import Edit from "./Components/Edit";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,16 +16,35 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="app">
-          <Router>
-            <Route exact path="/" component={Homepage} />
-            <Route exact path="/products" component={Products} />
-            <Route exact path="/products/:id" component={View} />
-            <Route exact path="/create" component={Create} />
-          </Router>
-        </div>
-      </React.Fragment>
+      <ProductConsumer>
+        {(value) => (
+          <React.Fragment>
+            <div className="app">
+              <Router>
+                <Route exact path="/" component={Homepage} />
+                <Route exact path="/products" component={Products} />
+                <Route exact path="/products/:id" component={View} />
+                <Route
+                  exact
+                  path="/create"
+                  component={() => <Create create={value.create} />}
+                />
+                <Route
+                  exact
+                  path="/products/:id/edit"
+                  component={() => (
+                    <Edit
+                      products={value.products}
+                      id={value.editProdcut}
+                      editProduct={value.edit1Product}
+                    />
+                  )}
+                />
+              </Router>
+            </div>
+          </React.Fragment>
+        )}
+      </ProductConsumer>
     );
   }
 }

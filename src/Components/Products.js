@@ -13,18 +13,44 @@ class Homepage extends React.Component {
     return (
       <React.Fragment>
         <div className="list">
-          <div className="row">
-            <div className="col-2">Products</div>
-            <div className="col-1">EAN</div>
-            <div className="col-1">Type</div>
-            <div className="col-1">Weight</div>
-            <div className="col-1">Color</div>
-            <div className="col-2">Products</div>
+          <div className="list-items">
+            <div className="row">
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Products</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Quantity</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Price</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">EAN</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Type</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Weight</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Color</span>
+              </div>
+              <div className="col-1 collumn ">
+                <span className="text-collumn bold">Active</span>
+              </div>
+            </div>
           </div>
           <ProductConsumer>
             {(value) => {
-              return value.products.map((product) => {
-                return <Product key={product.id} product={product} />;
+              return value.products.map((product, index) => {
+                return (
+                  <Product
+                    key={product.index}
+                    index={index}
+                    product={product}
+                  />
+                );
               });
             }}
           </ProductConsumer>

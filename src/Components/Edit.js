@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 
-class Create extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.name = React.createRef();
@@ -15,6 +15,8 @@ class Create extends React.Component {
     this.state = {
       newproduct: {
         name: "",
+        quantity: "",
+        price: "",
         ean: "",
         type: "",
         weight: "",
@@ -37,90 +39,75 @@ class Create extends React.Component {
         }
       },
       () => {
-        this.props.create(this.state.newproduct);
+        this.props.editProduct(this.state.newproduct);
       }
     );
   };
+
   render() {
-    const newproduct = this.state.newproduct;
     return (
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
             <div className="list">
-              <h2>Add new item</h2>
-              <div className="row">
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Products</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Quantity</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Price</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">EAN</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Type</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Weight</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Color</span>
-                </div>
-              </div>
+              <h2>Edit item</h2>
+              <div className="col-2">Name</div>
+
+              <input
+                type="text"
+                ref={this.name}
+                defaultValue={value.edit.name}
+              ></input>
+              <div className="col-1">Quantity</div>
+              <div className="col-1">Price</div>
+              <div className="col-1">EAN</div>
+              <div className="col-1">Type</div>
+              <div className="col-1">Weight</div>
+              <div className="col-1">Color</div>
+              <div className="col-1">Active</div>
               <form>
                 <div className="row">
+                  <div className="col-2"></div>
                   <div className="col-1">
                     <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.name}
-                    ></input>
-                  </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
                       type="text"
                       ref={this.quantity}
+                      defaultValue={value.edit.quantity}
                     ></input>
                   </div>
                   <div className="col-1">
                     <input
-                      className="input-collumn"
                       type="text"
                       ref={this.price}
+                      defaultValue={value.edit.price}
                     ></input>
                   </div>
                   <div className="col-1">
                     <input
-                      className="input-collumn"
                       type="text"
                       ref={this.ean}
+                      defaultValue={value.edit.ean}
                     ></input>
                   </div>
                   <div className="col-1">
                     <input
-                      className="input-collumn"
                       type="text"
                       ref={this.type}
+                      defaultValue={value.edit.type}
                     ></input>
                   </div>
                   <div className="col-1">
                     <input
-                      className="input-collumn"
                       type="text"
                       ref={this.weight}
+                      defaultValue={value.edit.weight}
                     ></input>
                   </div>
                   <div className="col-1">
                     <input
-                      className="input-collumn"
                       type="text"
                       ref={this.color}
+                      defaultValue={value.edit.color}
                     ></input>
                   </div>
                 </div>
@@ -130,7 +117,7 @@ class Create extends React.Component {
                   <button className="add">Back</button>
                 </Link>
                 <button className="add" onClick={this.handleSubmit}>
-                  Create
+                  Save
                 </button>
               </div>
             </div>
@@ -141,4 +128,4 @@ class Create extends React.Component {
   }
 }
 
-export default Create;
+export default Edit;
