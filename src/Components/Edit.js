@@ -114,9 +114,12 @@ class Edit extends React.Component {
               </form>
               <div className="menu">
                 <Link to="/products">
-                  <button className="add">Back</button>
+                  <button className="add bold">Back</button>
                 </Link>
-                <button className="add" onClick={this.handleSubmit}>
+                <button
+                  className="button-save add bold"
+                  onClick={this.handleSubmit}
+                >
                   Save
                 </button>
               </div>

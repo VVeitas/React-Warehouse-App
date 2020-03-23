@@ -15,28 +15,28 @@ class Homepage extends React.Component {
         <div className="list">
           <div className="list-items">
             <div className="row">
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Products</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Quantity</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Price</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">EAN</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Type</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Weight</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Color</span>
               </div>
-              <div className="col-1 collumn ">
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Active</span>
               </div>
             </div>
@@ -57,7 +57,9 @@ class Homepage extends React.Component {
 
           <div className="menu">
             <Link to="/create">
-              <button className="add">Add Item</button>
+              <button className="add">
+                <span className="bold">Add Item</span>
+              </button>
             </Link>
           </div>
         </div>

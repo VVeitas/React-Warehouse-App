@@ -48,90 +48,111 @@ class Create extends React.Component {
         {(value) => (
           <React.Fragment>
             <div className="list">
-              <h2>Add new item</h2>
-              <div className="row">
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Products</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Quantity</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Price</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">EAN</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Type</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Weight</span>
-                </div>
-                <div className="col-1 collumn ">
-                  <span className="text-collumn bold">Color</span>
-                </div>
-              </div>
-              <form>
-                <div className="row">
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.name}
-                    ></input>
+              <div className="create-container">
+                <h2>Add new item</h2>
+                <form>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">Products</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.name}
+                      ></input>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.quantity}
-                    ></input>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">Quantity</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.quantity}
+                      ></input>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.price}
-                    ></input>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">Price</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.price}
+                      ></input>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.ean}
-                    ></input>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">EAN</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.ean}
+                      ></input>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.type}
-                    ></input>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">Type</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.type}
+                      ></input>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.weight}
-                    ></input>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">Weight</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.weight}
+                      ></input>
+                    </div>
                   </div>
-                  <div className="col-1">
-                    <input
-                      className="input-collumn"
-                      type="text"
-                      ref={this.color}
-                    ></input>
+                  <div className="row">
+                    <div className="col-3 collumn ">
+                      <span className="text-collumn bold">Color</span>
+                    </div>
+                    <div className="col-3">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.color}
+                      ></input>
+                    </div>
                   </div>
+
+                  <div className="row">
+                    <div className="col-1"></div>
+                  </div>
+                </form>
+                <div className="menu">
+                  <Link to="/products">
+                    <button className="add">
+                      <span className="bold">Back</span>
+                    </button>
+                  </Link>
+                  <button
+                    className="button-save add"
+                    onClick={this.handleSubmit}
+                  >
+                    <span className="bold">Save</span>
+                  </button>
                 </div>
-              </form>
-              <div className="menu">
-                <Link to="/products">
-                  <button className="add">Back</button>
-                </Link>
-                <button className="add" onClick={this.handleSubmit}>
-                  Create
-                </button>
               </div>
             </div>
           </React.Fragment>

@@ -27,28 +27,28 @@ class Product extends React.Component {
           <React.Fragment>
             <div className="product-container">
               <div className="row">
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{name}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{quantity}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{price}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{ean}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{type}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{weight}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{color}</span>
                 </div>
-                <div className="col-1 collumn">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">
                     <input type="checkbox" onChange={value.checkBox} />
                   </span>
