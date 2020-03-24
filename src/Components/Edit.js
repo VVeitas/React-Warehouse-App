@@ -39,7 +39,7 @@ class Edit extends React.Component {
         }
       },
       () => {
-        this.props.editProduct(this.state.newproduct);
+        this.props.edit1Product(this.state.newproduct);
       }
     );
   };
@@ -70,7 +70,7 @@ class Edit extends React.Component {
                   <div className="col-2"></div>
                   <div className="col-1">
                     <input
-                      type="text"
+                      type="number"
                       ref={this.quantity}
                       defaultValue={value.edit.quantity}
                     ></input>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+
 const options = {
   title: {
     text: "My chart"
@@ -13,6 +14,7 @@ const options = {
     }
   ]
 };
+
 class View extends React.Component {
   constructor(props) {
     super(props);

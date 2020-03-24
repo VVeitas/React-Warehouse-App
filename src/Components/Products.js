@@ -49,6 +49,7 @@ class Homepage extends React.Component {
                     key={product.index}
                     index={index}
                     product={product}
+                    changeQuantity={value.changeQuantity}
                   />
                 );
               });
@@ -61,6 +62,13 @@ class Homepage extends React.Component {
                 <span className="bold">Add Item</span>
               </button>
             </Link>
+
+            <button
+              className="button-save add"
+              onClick={this.props.edit2Product}
+            >
+              <span className="bold">Save</span>
+            </button>
           </div>
         </div>
       </React.Fragment>

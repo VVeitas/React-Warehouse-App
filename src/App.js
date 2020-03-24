@@ -22,7 +22,14 @@ class App extends React.Component {
             <div className="app">
               <Router>
                 <Route exact path="/" component={Homepage} />
-                <Route exact path="/products" component={Products} />
+
+                <Route
+                  exact
+                  path="/products"
+                  component={() => (
+                    <Products edit2Product={value.edit2Product} />
+                  )}
+                />
                 <Route exact path="/products/:id" component={View} />
                 <Route
                   exact
@@ -36,7 +43,7 @@ class App extends React.Component {
                     <Edit
                       products={value.products}
                       id={value.editProdcut}
-                      editProduct={value.edit1Product}
+                      edit1Product={value.edit1Product}
                     />
                   )}
                 />

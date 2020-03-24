@@ -5,20 +5,26 @@ import { ProductConsumer } from "../Context";
 class Product extends React.Component {
   constructor(props) {
     super(props);
+    this.quantity = React.createRef();
+    this.price = React.createRef();
     this.state = {};
   }
-
+  handleSave = (e) => {
+    this.setState(
+      {
+        price: this.price.current.value,
+        quantity: this.quantity.current.value
+      },
+      () => {
+        this.props.edit2Product(this.state.price, this.state.quantity);
+      }
+    );
+  };
+  changeQuantity = (e, index) => {
+    this.props.changeQuantity(e, index);
+  };
   render() {
-    const {
-      name,
-      quantity,
-      price,
-      ean,
-      type,
-      weight,
-      color,
-      active
-    } = this.props.product;
+    const { name, ean, type, weight, color } = this.props.product;
     const index = this.props.index;
     const product = this.props.product;
     return (
@@ -31,10 +37,21 @@ class Product extends React.Component {
                   <span className="text-collumn">{name}</span>
                 </div>
                 <div className="col-1 collumn border-right">
-                  <span className="text-collumn">{quantity}</span>
+                  <input
+                    className="list-input"
+                    type="text"
+                    ref={this.quantity}
+                    onChange={(e) => this.changeQuantity(e, index)}
+                    defaultValue={value.products[index].quantity}
+                  ></input>
                 </div>
                 <div className="col-1 collumn border-right">
-                  <span className="text-collumn">{price}</span>
+                  <input
+                    className="list-input"
+                    type="text"
+                    ref={this.price}
+                    defaultValue={value.products[index].price}
+                  ></input>
                 </div>
                 <div className="col-1 collumn border-right">
                   <span className="text-collumn">{ean}</span>
@@ -53,7 +70,7 @@ class Product extends React.Component {
                     <input type="checkbox" onChange={value.checkBox} />
                   </span>
                 </div>
-                <div className="col-2">
+                <div className="col-4">
                   <Link to={`/products/${name}`}>
                     <button className="product-button view ">VIEW</button>
                   </Link>

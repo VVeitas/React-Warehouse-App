@@ -11,7 +11,7 @@ class ProductProvider extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     if (localStorage.getItem("inventory") === null) {
       this.setState({ products: [] });
     } else {
@@ -51,11 +51,24 @@ class ProductProvider extends React.Component {
   edit1Product = (product) => {
     const x = this.state.products;
     x.splice(this.state.index, 1, product);
-    console.log(x);
+    this.save();
+  };
+
+  edit2Product = (product, product1) => {
+    console.log(product);
   };
 
   checkBox = () => {
     console.log("aa");
+  };
+
+  quantity = (index) => {
+    const x = this.state.products[index].quantity;
+    return x;
+  };
+  changeQuantity = (e, index) => {
+    this.state.products[index].quantity = e.target.value;
+    console.log(this.state.products);
   };
   render() {
     const id = this.state.products.length;
@@ -70,10 +83,13 @@ class ProductProvider extends React.Component {
           deleteProduct: this.deleteProduct,
           editProduct: this.editProduct,
           edit1Product: this.edit1Product,
+          edit2Product: this.edit2Product,
           edit: this.state.edit,
           index: this.state.index,
           checkBox: this.checkBox,
-          editSave: this.editSave
+          editSave: this.editSave,
+          quantity: this.quantity,
+          changeQuantity: this.changeQuantity
         }}
       >
         {this.props.children}
