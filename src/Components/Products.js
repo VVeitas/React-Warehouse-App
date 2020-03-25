@@ -50,26 +50,32 @@ class Homepage extends React.Component {
                     index={index}
                     product={product}
                     changeQuantity={value.changeQuantity}
+                    changePrice={value.changePrice}
+                    disableProduct={value.disableProduct}
                   />
                 );
               });
             }}
           </ProductConsumer>
+          <ProductConsumer>
+            {(value) => (
+              <React.Fragment>
+                <div className="menu">
+                  <Link to="/create">
+                    <button className="add">
+                      <span className="bold" onClick={value.saveList}>
+                        Add Item
+                      </span>
+                    </button>
+                  </Link>
 
-          <div className="menu">
-            <Link to="/create">
-              <button className="add">
-                <span className="bold">Add Item</span>
-              </button>
-            </Link>
-
-            <button
-              className="button-save add"
-              onClick={this.props.edit2Product}
-            >
-              <span className="bold">Save</span>
-            </button>
-          </div>
+                  <button className="button-save add" onClick={value.saveList}>
+                    <span className="bold">Save</span>
+                  </button>
+                </div>
+              </React.Fragment>
+            )}
+          </ProductConsumer>
         </div>
       </React.Fragment>
     );

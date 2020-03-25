@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 
 class Product extends React.Component {
@@ -7,24 +7,32 @@ class Product extends React.Component {
     super(props);
     this.quantity = React.createRef();
     this.price = React.createRef();
-    this.state = {};
+    this.state = { x: false };
   }
-  handleSave = (e) => {
-    this.setState(
-      {
-        price: this.price.current.value,
-        quantity: this.quantity.current.value
-      },
-      () => {
-        this.props.edit2Product(this.state.price, this.state.quantity);
-      }
-    );
+  changeQuantity = (e, index, name) => {
+    this.props.changeQuantity(e, index, name);
   };
-  changeQuantity = (e, index) => {
-    this.props.changeQuantity(e, index);
+
+  changePrice = (e, index) => {
+    this.props.changePrice(e, index);
   };
+
+  disableProduct = (index) => {
+    this.props.disableProduct(index);
+    this.setState({ x: false });
+    console.log(this.state.x);
+  };
+
+  style = () => {
+    if (this.state.x === true) {
+      return "disabled";
+    } else {
+      return "enabled";
+    }
+  };
+
   render() {
-    const { name, ean, type, weight, color } = this.props.product;
+    const { name, ean, type, weight, color, active } = this.props.product;
     const index = this.props.index;
     const product = this.props.product;
     return (
@@ -33,23 +41,39 @@ class Product extends React.Component {
           <React.Fragment>
             <div className="product-container">
               <div className="row">
-                <div className="col-1 collumn border-right">
+                <div className="col-1 collumn border-right disable-switch">
+                  <span className="text-collumn">
+                    <input
+                      className="disable-checkbox"
+                      type="checkbox"
+                      checked={active}
+                      onClick={() => this.disableProduct(index)}
+                    />
+                  </span>
+                </div>
+                <div className="col-1 collumn border-right ">
                   <span className="text-collumn">{name}</span>
                 </div>
-                <div className="col-1 collumn border-right">
+                <div className="col-1 collumn border-right ">
                   <input
                     className="list-input"
-                    type="text"
+                    type="number"
                     ref={this.quantity}
-                    onChange={(e) => this.changeQuantity(e, index)}
+                    onChange={(e) => this.changeQuantity(e, index, name)}
                     defaultValue={value.products[index].quantity}
                   ></input>
+                  <button
+                    onClick={() => {
+                      value.saveQuantity(index, name);
+                    }}
+                  ></button>
                 </div>
                 <div className="col-1 collumn border-right">
                   <input
                     className="list-input"
-                    type="text"
+                    type="number"
                     ref={this.price}
+                    onChange={(e) => this.changePrice(e, index, name)}
                     defaultValue={value.products[index].price}
                   ></input>
                 </div>
@@ -65,14 +89,17 @@ class Product extends React.Component {
                 <div className="col-1 collumn border-right">
                   <span className="text-collumn">{color}</span>
                 </div>
-                <div className="col-1 collumn border-right">
-                  <span className="text-collumn">
-                    <input type="checkbox" onChange={value.checkBox} />
-                  </span>
-                </div>
+
                 <div className="col-4">
                   <Link to={`/products/${name}`}>
-                    <button className="product-button view ">VIEW</button>
+                    <button
+                      className="product-button view "
+                      onClick={() => {
+                        value.viewProduct(product, index);
+                      }}
+                    >
+                      VIEW
+                    </button>
                   </Link>
                   <Link to={`/products/${name}/edit`}>
                     <button
@@ -93,6 +120,8 @@ class Product extends React.Component {
                     DELETE
                   </button>
                 </div>
+
+                <div className={this.style()}></div>
               </div>
             </div>
           </React.Fragment>

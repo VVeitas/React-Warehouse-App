@@ -2,8 +2,8 @@ body {
   font-family: sans-serif;
   letter-spacing: 1.2px;
   background-color: #222;
-  padding: 2;
-  margin: 2;
+  padding: 0;
+  margin: 0;
   font-size: 0.8vw;
 }
 
@@ -17,12 +17,23 @@ h2 {
   padding: 5px 10px 10px 10px;
   text-align: center;
 }
+
 input {
   max-width: 200px;
 }
 
 input:focus {
   outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .app {
@@ -190,6 +201,25 @@ input:focus {
 
 .list-input {
   width: 40px;
-  position: absolute;
+  position: relative;
   font-weight: bold;
+}
+
+.disabled {
+  width: 100%;
+  right: 0;
+  height: 55px;
+  background-color: lightgrey;
+  position: absolute;
+  z-index: 1;
+  opacity: 0.7;
+  margin-left: 15px;
+}
+.disable-checkbox {
+  width: 17px;
+  height: 17px;
+}
+
+.disable-switch {
+  z-index: 2;
 }

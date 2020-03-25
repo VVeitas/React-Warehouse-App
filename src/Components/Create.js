@@ -45,7 +45,8 @@ class Create extends React.Component {
             ean: this.ean.current.value,
             type: this.type.current.value,
             weight: this.weight.current.value,
-            color: this.color.current.value
+            color: this.color.current.value,
+            active: true
           }
         },
         () => {
@@ -84,7 +85,7 @@ class Create extends React.Component {
                       <div className="col-6">
                         <input
                           className="input-collumn"
-                          type="text"
+                          type="number"
                           ref={this.quantity}
                         ></input>
                       </div>
@@ -96,7 +97,7 @@ class Create extends React.Component {
                       <div className="col-6">
                         <input
                           className="input-collumn"
-                          type="text"
+                          type="number"
                           ref={this.price}
                         ></input>
                       </div>
@@ -132,7 +133,7 @@ class Create extends React.Component {
                       <div className="col-6">
                         <input
                           className="input-collumn"
-                          type="text"
+                          type="number"
                           ref={this.weight}
                         ></input>
                       </div>
