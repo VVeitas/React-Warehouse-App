@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import Product from "./Product";
+import Create from "./Create";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -26,6 +27,9 @@ class Homepage extends React.Component {
               </div>
               <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Price</span>
+              </div>
+              <div className="col-1 list-container collumn border-right">
+                <span className="text-collumn bold">Save</span>
               </div>
               <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">EAN</span>
@@ -52,6 +56,7 @@ class Homepage extends React.Component {
                     changeQuantity={value.changeQuantity}
                     changePrice={value.changePrice}
                     disableProduct={value.disableProduct}
+                    saveList={value.saveList}
                   />
                 );
               });
@@ -63,16 +68,23 @@ class Homepage extends React.Component {
                 <div className="menu">
                   <Link to="/create">
                     <button className="add">
-                      <span className="bold" onClick={value.saveList}>
+                      <span
+                        className="bold"
+                        onClick={value.saveList}
+                        products={value.products}
+                      >
                         Add Item
                       </span>
                     </button>
                   </Link>
-
-                  <button className="button-save add" onClick={value.saveList}>
-                    <span className="bold">Save</span>
-                  </button>
                 </div>
+                <Router>
+                  <Route
+                    exact
+                    path="/create"
+                    component={() => <Create create={value.create} />}
+                  />
+                </Router>
               </React.Fragment>
             )}
           </ProductConsumer>

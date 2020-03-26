@@ -7,8 +7,9 @@ class Product extends React.Component {
     super(props);
     this.quantity = React.createRef();
     this.price = React.createRef();
-    this.state = { x: false };
+    this.state = {};
   }
+
   changeQuantity = (e, index, name) => {
     this.props.changeQuantity(e, index, name);
   };
@@ -19,15 +20,18 @@ class Product extends React.Component {
 
   disableProduct = (index) => {
     this.props.disableProduct(index);
-    this.setState({ x: false });
-    console.log(this.state.x);
+    const active = JSON.parse(localStorage.getItem("inventory"));
+    const status = active[index].active;
+    console.log(status);
+    this.setState({ x: this.props.product.active });
+    this.props.saveList();
   };
 
   style = () => {
-    if (this.state.x === true) {
-      return "disabled";
-    } else {
+    if (this.props.product.active === true) {
       return "enabled";
+    } else {
+      return "disabled";
     }
   };
 
@@ -47,7 +51,7 @@ class Product extends React.Component {
                       className="disable-checkbox"
                       type="checkbox"
                       checked={active}
-                      onClick={() => this.disableProduct(index)}
+                      onChange={() => this.disableProduct(index)}
                     />
                   </span>
                 </div>
@@ -56,17 +60,12 @@ class Product extends React.Component {
                 </div>
                 <div className="col-1 collumn border-right ">
                   <input
-                    className="list-input"
+                    className="list-input "
                     type="number"
                     ref={this.quantity}
                     onChange={(e) => this.changeQuantity(e, index, name)}
                     defaultValue={value.products[index].quantity}
                   ></input>
-                  <button
-                    onClick={() => {
-                      value.saveQuantity(index, name);
-                    }}
-                  ></button>
                 </div>
                 <div className="col-1 collumn border-right">
                   <input
@@ -76,11 +75,16 @@ class Product extends React.Component {
                     onChange={(e) => this.changePrice(e, index, name)}
                     defaultValue={value.products[index].price}
                   ></input>
+                </div>
+                <div className="col-1 list-container collumn border-right">
                   <button
+                    className="inlist-save"
                     onClick={() => {
-                      value.savePrice(index, name);
+                      value.saveChanges(index, name);
                     }}
-                  ></button>
+                  >
+                    <i class="fa fa-save"></i>
+                  </button>
                 </div>
                 <div className="col-1 collumn border-right">
                   <span className="text-collumn">{ean}</span>
@@ -91,20 +95,13 @@ class Product extends React.Component {
                 <div className="col-1 collumn border-right">
                   <span className="text-collumn">{weight}</span>
                 </div>
-                <div className="col-1 collumn border-right">
+                <div className="col-1 collumn collumn border-right">
                   <span className="text-collumn">{color}</span>
                 </div>
 
-                <div className="col-4">
+                <div className="">
                   <Link to={`/products/${name}`}>
-                    <button
-                      className="product-button view "
-                      onClick={() => {
-                        value.viewProduct(name);
-                      }}
-                    >
-                      VIEW
-                    </button>
+                    <button className="product-button view ">VIEW</button>
                   </Link>
                   <Link to={`/products/${name}/edit`}>
                     <button

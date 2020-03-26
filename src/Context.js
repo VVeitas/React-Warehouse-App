@@ -21,11 +21,12 @@ class ProductProvider extends React.Component {
   };
 
   create = (param) => {
-    var update = this.state.products.concat(param);
+    const update = this.state.products.concat(param);
+    const index = this.state.products.length;
     this.setState({ products: update }, () => {
       this.saveLocalStorage();
-      this.saveQuantity(0, param.name);
-      this.savePrice(0, param.name);
+      this.saveQuantity(index, param.name);
+      this.savePrice(index, param.name);
     });
   };
 
@@ -39,6 +40,11 @@ class ProductProvider extends React.Component {
     });
   };
 
+  saveChanges = (index, name) => {
+    this.saveQuantity(index, name);
+    this.savePrice(index, name);
+  };
+
   saveQuantity = (index, name) => {
     const x = this.state.products[index];
     this.state.products[index].quantityChangeDate = new Date();
@@ -48,12 +54,14 @@ class ProductProvider extends React.Component {
       localStorage.setItem(name1, JSON.stringify(y));
     } else {
       const z = JSON.parse(localStorage.getItem(name1));
-      z.unshift(x);
-      if (z[0].quantity === z[1].quantity) {
-        z.shift();
+
+      const arrayLength = z.length;
+      z.push(x);
+      if (z[arrayLength - 1].quantity == z[arrayLength].quantity) {
+        z.pop();
       }
       if (z.length > 5) {
-        z.pop();
+        z.shift();
       }
       localStorage.setItem(name1, JSON.stringify(z));
     }
@@ -69,12 +77,14 @@ class ProductProvider extends React.Component {
       localStorage.setItem(name1, JSON.stringify(y));
     } else {
       const z = JSON.parse(localStorage.getItem(name1));
-      z.unshift(x);
-      if (z[0].price === z[1].price) {
-        z.shift();
+
+      const arrayLength = z.length;
+      z.push(x);
+      if (z[arrayLength - 1].price == z[arrayLength].price) {
+        z.pop();
       }
       if (z.length > 5) {
-        z.pop();
+        z.shift();
       }
       localStorage.setItem(name1, JSON.stringify(z));
     }
@@ -119,7 +129,6 @@ class ProductProvider extends React.Component {
     if (this.state.products[index].active) {
       this.state.products[index].active = false;
     } else this.state.products[index].active = true;
-    console.log(this.state.products[index].active);
     this.setState({ products: this.state.products });
     this.saveLocalStorage();
   };
@@ -148,8 +157,7 @@ class ProductProvider extends React.Component {
           changeQuantity: this.changeQuantity,
           changePrice: this.changePrice,
           disableProduct: this.disableProduct,
-          saveQuantity: this.saveQuantity,
-          viewProduct: this.viewProduct,
+          saveChanges: this.saveChanges,
           savePrice: this.savePrice,
           currentView: this.state.currentView
         }}

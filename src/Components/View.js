@@ -8,7 +8,7 @@ class View extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: ""
+      options: {}
     };
   }
 
@@ -27,21 +27,25 @@ class View extends React.Component {
       this.setState({ series: [] });
     } else {
       var data = JSON.parse(localStorage.getItem(quantityStorage));
-      this.setState({ products: data });
     }
-    let result = data.map(({ quantity }) => quantity);
+    const quantityData = data.map(({ quantity }) => parseInt(quantity, 10));
+
     this.setState({
       options: {
         title: {
-          text: "My chart"
+          text: name
         },
         series: [
           {
-            data: [1, 2, 3, 5, 88]
+            data: [...quantityData]
           }
-        ]
+        ],
+        xAxis: {
+          categories: ["A", "B", "C", "C", "C"]
+        }
       }
     });
+    console.log(this.state.options.series);
   };
 
   render() {
@@ -50,11 +54,15 @@ class View extends React.Component {
         {(value) => (
           <React.Fragment>
             <div className="list">
-              <h2 className="view-h2">VIEW </h2>
-              <HighchartsReact
-                highcharts={Highcharts}
-                options={this.state.options}
-              />
+              <div className="view-container">
+                <h2 className="view-h2">VIEW </h2>
+                <div className="charts">
+                  <HighchartsReact
+                    highcharts={Highcharts}
+                    options={this.state.options}
+                  />
+                </div>
+              </div>
               <div className="menu">
                 <Link to="/products">
                   <button className="add bold">Back</button>

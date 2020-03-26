@@ -31,7 +31,7 @@ class App extends React.Component {
                 <Route
                   exact
                   path="/create"
-                  component={() => <Create create={value.create} />}
+                  component={() => <Products create={value.create} />}
                 />
                 <Route
                   exact
