@@ -16,6 +16,9 @@ class Homepage extends React.Component {
           <div className="list-items">
             <div className="row">
               <div className="col-1 collumn border-right">
+                <span className="text-collumn bold">Active</span>
+              </div>
+              <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Products</span>
               </div>
               <div className="col-1 collumn border-right">
@@ -35,9 +38,6 @@ class Homepage extends React.Component {
               </div>
               <div className="col-1 collumn border-right">
                 <span className="text-collumn bold">Color</span>
-              </div>
-              <div className="col-1 collumn border-right">
-                <span className="text-collumn bold">Active</span>
               </div>
             </div>
           </div>

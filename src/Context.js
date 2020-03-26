@@ -24,7 +24,8 @@ class ProductProvider extends React.Component {
     var update = this.state.products.concat(param);
     this.setState({ products: update }, () => {
       this.saveLocalStorage();
-      console.log(param);
+      this.saveQuantity(0, param.name);
+      this.savePrice(0, param.name);
     });
   };
 
@@ -40,16 +41,42 @@ class ProductProvider extends React.Component {
 
   saveQuantity = (index, name) => {
     const x = this.state.products[index];
+    this.state.products[index].quantityChangeDate = new Date();
     const y = [x];
-    if (localStorage.getItem(name) === null) {
-      localStorage.setItem(name, JSON.stringify(y));
+    const name1 = name + "Q";
+    if (localStorage.getItem(name1) === null) {
+      localStorage.setItem(name1, JSON.stringify(y));
     } else {
-      const z = JSON.parse(localStorage.getItem(name));
+      const z = JSON.parse(localStorage.getItem(name1));
       z.unshift(x);
+      if (z[0].quantity === z[1].quantity) {
+        z.shift();
+      }
       if (z.length > 5) {
         z.pop();
       }
-      localStorage.setItem(name, JSON.stringify(z));
+      localStorage.setItem(name1, JSON.stringify(z));
+    }
+    this.saveList();
+  };
+
+  savePrice = (index, name) => {
+    const x = this.state.products[index];
+    this.state.products[index].priceChangeDate = new Date();
+    const y = [x];
+    const name1 = name + "P";
+    if (localStorage.getItem(name1) === null) {
+      localStorage.setItem(name1, JSON.stringify(y));
+    } else {
+      const z = JSON.parse(localStorage.getItem(name1));
+      z.unshift(x);
+      if (z[0].price === z[1].price) {
+        z.shift();
+      }
+      if (z.length > 5) {
+        z.pop();
+      }
+      localStorage.setItem(name1, JSON.stringify(z));
     }
     this.saveList();
   };
@@ -82,7 +109,6 @@ class ProductProvider extends React.Component {
   };
   changeQuantity = (e, index, name) => {
     this.state.products[index].quantity = e.target.value;
-    this.state.quantityHistory = this.state.products[index];
   };
 
   changePrice = (e, index, name) => {
@@ -97,6 +123,10 @@ class ProductProvider extends React.Component {
     this.setState({ products: this.state.products });
     this.saveLocalStorage();
   };
+
+  viewProduct = (name) => {
+    this.setState({ currentView: name });
+  };
   render() {
     const id = this.state.products.length;
     return (
@@ -106,7 +136,6 @@ class ProductProvider extends React.Component {
           create: this.create,
           save: this.saveLocalStorage,
           saveList: this.saveList,
-          alert: this.alert,
           id: id,
           deleteProduct: this.deleteProduct,
           editProduct: this.editProduct,
@@ -120,7 +149,9 @@ class ProductProvider extends React.Component {
           changePrice: this.changePrice,
           disableProduct: this.disableProduct,
           saveQuantity: this.saveQuantity,
-          viewProduct: this.viewProduct
+          viewProduct: this.viewProduct,
+          savePrice: this.savePrice,
+          currentView: this.state.currentView
         }}
       >
         {this.props.children}

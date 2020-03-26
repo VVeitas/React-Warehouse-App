@@ -76,6 +76,11 @@ class Product extends React.Component {
                     onChange={(e) => this.changePrice(e, index, name)}
                     defaultValue={value.products[index].price}
                   ></input>
+                  <button
+                    onClick={() => {
+                      value.savePrice(index, name);
+                    }}
+                  ></button>
                 </div>
                 <div className="col-1 collumn border-right">
                   <span className="text-collumn">{ean}</span>
@@ -95,7 +100,7 @@ class Product extends React.Component {
                     <button
                       className="product-button view "
                       onClick={() => {
-                        value.viewProduct(product, index);
+                        value.viewProduct(name);
                       }}
                     >
                       VIEW
