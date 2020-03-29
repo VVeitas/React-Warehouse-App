@@ -91,12 +91,15 @@ class ProductProvider extends React.Component {
     this.saveList();
   };
 
-  deleteProduct = (index) => {
+  deleteProduct = (index, name) => {
     console.log(index);
     this.state.products.splice(index, 1);
     const x = this.state.products;
     localStorage.setItem("inventory", JSON.stringify(x));
-    this.setState({ products: x });
+    this.setState({ products: x }, () => {
+      localStorage.removeItem(name + "Q");
+      localStorage.removeItem(name + "P");
+    });
   };
 
   editProduct = (product, index) => {

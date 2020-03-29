@@ -25,8 +25,8 @@ class App extends React.Component {
                 <Route exact path="/products" component={Products} />
                 <Route
                   exact
-                  path="/products/:id"
-                  component={() => <View currentView={value.currentView} />}
+                  path="/products/:id/:id"
+                  component={() => <Products currentView={value.currentView} />}
                 />
                 <Route
                   exact

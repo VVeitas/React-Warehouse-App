@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import Product from "./Product";
 import Create from "./Create";
+import View from "./View";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -65,24 +66,44 @@ class Homepage extends React.Component {
           <ProductConsumer>
             {(value) => (
               <React.Fragment>
-                <div className="menu">
-                  <Link to="/create">
-                    <button className="add">
-                      <span
-                        className="bold"
-                        onClick={value.saveList}
-                        products={value.products}
-                      >
-                        Add Item
-                      </span>
-                    </button>
-                  </Link>
+                <div className="product-container">
+                  <div className="row">
+                    <div className="col-1 collumn border-right disable-switch">
+                      <span className="text-collumn"></span>
+                    </div>
+                    <div className="col-1 collumn border-right "></div>
+                    <div className="col-1 collumn border-right"></div>
+                    <div className="col-1 collumn border-right"></div>
+
+                    <div className="col-1 list-container collumn border-right"></div>
+                    <div className="col-1 collumn border-right"></div>
+                    <div className="col-1 collumn border-right"></div>
+                    <div className="col-1 collumn collumn border-right"></div>
+                    <div className="col-1 collumn collumn border-right"></div>
+                    <div className="buttons-collumn">
+                      <Link to="/create">
+                        <button
+                          className="product-button create-new-item "
+                          onClick={value.saveList}
+                          products={value.products}
+                        >
+                          CREATE NEW ITEM
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
+
                 <Router>
                   <Route
                     exact
                     path="/create"
                     component={() => <Create create={value.create} />}
+                  />
+                  <Route
+                    exact
+                    path="/products/:id/quantityhistory"
+                    component={() => <View currentView={value.currentView} />}
                   />
                 </Router>
               </React.Fragment>

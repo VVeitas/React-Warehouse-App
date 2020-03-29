@@ -62,7 +62,7 @@ class Create extends React.Component {
         {(value) => (
           <React.Fragment>
             <div className="list1"></div>
-            <div className="create-container">
+            <div className="containers">
               <div className="text-forms">
                 <h2>Add new item</h2>
                 <form>
@@ -151,17 +151,23 @@ class Create extends React.Component {
                     </div>
                   </div>
                 </form>
+                <div className="row">
+                  <div className="col-12">
+                    <Link to="/products">
+                      <button className="container-buttons">
+                        <span className="bold">Back</span>
+                      </button>
+                    </Link>
+
+                    <button
+                      className="container-buttons button-save"
+                      onClick={this.handleSubmit}
+                    >
+                      <span className="bold">Save</span>
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="menu">
-              <Link to="/products">
-                <button className="add">
-                  <span className="bold">Back</span>
-                </button>
-              </Link>
-              <button className="button-save add" onClick={this.handleSubmit}>
-                <span className="bold">Save</span>
-              </button>
             </div>
           </React.Fragment>
         )}

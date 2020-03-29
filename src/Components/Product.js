@@ -35,6 +35,14 @@ class Product extends React.Component {
     }
   };
 
+  highlightStyle = () => {
+    if (this.props.product.quantity <= 0) {
+      return "highlight col-1 collumn border-right ";
+    } else {
+      return "col-1 collumn border-right";
+    }
+  };
+
   render() {
     const { name, ean, type, weight, color, active } = this.props.product;
     const index = this.props.index;
@@ -58,9 +66,9 @@ class Product extends React.Component {
                 <div className="col-1 collumn border-right ">
                   <span className="text-collumn">{name}</span>
                 </div>
-                <div className="col-1 collumn border-right ">
+                <div className={this.highlightStyle()}>
                   <input
-                    className="list-input "
+                    className="list-input"
                     type="number"
                     ref={this.quantity}
                     onChange={(e) => this.changeQuantity(e, index, name)}
@@ -99,8 +107,8 @@ class Product extends React.Component {
                   <span className="text-collumn">{color}</span>
                 </div>
 
-                <div className="">
-                  <Link to={`/products/${name}`}>
+                <div className="buttons-collumn">
+                  <Link to={`/products/${name}/quantityhistory`}>
                     <button className="product-button view ">VIEW</button>
                   </Link>
                   <Link to={`/products/${name}/edit`}>
@@ -116,7 +124,7 @@ class Product extends React.Component {
                   <button
                     className="product-button delete"
                     onClick={() => {
-                      value.deleteProduct(index);
+                      value.deleteProduct(index, name);
                     }}
                   >
                     DELETE
