@@ -30,7 +30,6 @@ class QuantityHistory extends React.Component {
     }
     const quantityData = data.map(({ quantity }) => parseInt(quantity, 10));
     const xAxis = data.map((data) => data.quantityChangeDate);
-    console.log(xAxis);
     this.setState({
       options: {
         title: {
@@ -57,7 +56,7 @@ class QuantityHistory extends React.Component {
             <div className="list1"></div>
 
             <div className="containers view-container">
-              <h2 className="view-h2">Quantity History </h2>
+              <h2 className="view-h2">{name} Quantity History </h2>
 
               <div className="view-tabs">
                 <div className="row">

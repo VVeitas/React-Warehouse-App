@@ -138,6 +138,10 @@ input[type="number"] {
   font-weight: bold;
 }
 
+.lighter {
+  font-weight: lighter;
+}
+
 .text-collumn {
   position: absolute;
   top: 50%;
@@ -210,6 +214,14 @@ input[type="number"] {
 .view-container {
   width: 1050px;
   height: 680px;
+  position: absolute;
+  z-index: 2;
+  padding: 40px;
+}
+
+.details-container {
+  width: 620px;
+  height: 615px;
   position: absolute;
   z-index: 2;
   padding: 40px;
@@ -307,4 +319,18 @@ input[type="number"] {
 .tab-text {
   margin: 10px;
   font-size: 17px;
+}
+
+.product-details {
+  width: 200px;
+  height: 300px;
+  margin-top: 30px;
+}
+
+.product-details-h5 {
+  position: relative;
+  left: 50%;
+  font-size: 22px;
+  line-height: 30px;
+  margin-left: 26px;
 }

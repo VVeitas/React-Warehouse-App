@@ -156,7 +156,6 @@ class Edit extends React.Component {
                         <span className="bold">Back</span>
                       </button>
                     </Link>
-
                     <button
                       className="container-buttons button-save"
                       onClick={this.handleSubmit}

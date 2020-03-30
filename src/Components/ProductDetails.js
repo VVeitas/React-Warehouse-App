@@ -57,7 +57,7 @@ class ProductDetails extends React.Component {
           <React.Fragment>
             <div className="list1"></div>
 
-            <div className="containers view-container">
+            <div className="containers details-container">
               <h2 className="view-h2">Product Details </h2>
 
               <div className="view-tabs">
@@ -72,18 +72,55 @@ class ProductDetails extends React.Component {
                     <p className="tab-text">Price History</p>
                   </Link>
                 </div>
-                <div className="row">
-                  <h3>{product.name}</h3>
+                <div className="product-details ">
+                  <div className="row">
+                    <h5 className="product-details-h5">Name:</h5>
+                    <h5 className="product-details-h5 lighter">
+                      {product.name}
+                    </h5>
+                  </div>
+                  <div className="row">
+                    <h5 className="product-details-h5 ">Quantity:</h5>
+                    <h5 className="product-details-h5 lighter">
+                      {product.quantity}
+                    </h5>
+                  </div>
+                  <div className="row">
+                    <h5 className="product-details-h5">Price:</h5>
+                    <h5 className="product-details-h5 lighter">
+                      {product.price}
+                    </h5>
+                  </div>
+                  <div className="row">
+                    <h5 className="product-details-h5 ">Ean:</h5>
+                    <h5 className="product-details-h5 lighter">
+                      {product.ean}
+                    </h5>
+                  </div>
+                  <div className="row">
+                    <h5 className="product-details-h5">Type:</h5>
+                    <h5 className="product-details-h5 lighter">
+                      {product.type}
+                    </h5>
+                  </div>
+                  <div className="row">
+                    <h5 className="product-details-h5 ">Weight:</h5>
+                    <h5 className="product-details-h5 lighter">
+                      {product.weight}
+                    </h5>
+                  </div>
+                  <div className="row">
+                    <h5 className="product-details-h5">Color:</h5>
+                    <h5 className="product-details-h5 lighter right">
+                      {product.color}
+                    </h5>
+                  </div>
                 </div>
-                <div className="row"></div>
-
-                <div className="row">
-                  <Link to="/products">
-                    <button className="container-buttons">
-                      <span className="bold">Back</span>
-                    </button>
-                  </Link>
-                </div>
+                <Link to="/products">
+                  <button className="container-buttons">
+                    <span className="bold">Back</span>
+                  </button>
+                </Link>
               </div>
             </div>
           </React.Fragment>

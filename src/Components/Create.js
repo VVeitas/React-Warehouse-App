@@ -39,7 +39,6 @@ class Create extends React.Component {
         {
           newproduct: {
             name: this.name.current.value,
-
             quantity: this.quantity.current.value,
             price: this.price.current.value,
             ean: this.ean.current.value,
@@ -68,7 +67,7 @@ class Create extends React.Component {
                 <form>
                   <div className="row">
                     <div className="col-6 collumn ">
-                      <span className="text-collumn bold">Name</span>
+                      <h5 className="product-details-h5">Name</h5>
                     </div>
                     <div className="col-6">
                       <input
@@ -151,21 +150,19 @@ class Create extends React.Component {
                     </div>
                   </div>
                 </form>
-                <div className="row">
-                  <div className="col-12">
-                    <Link to="/products">
-                      <button className="container-buttons">
-                        <span className="bold">Back</span>
-                      </button>
-                    </Link>
-
-                    <button
-                      className="container-buttons button-save"
-                      onClick={this.handleSubmit}
-                    >
-                      <span className="bold">Save</span>
+                <div className="col-12">
+                  <Link to="/products">
+                    <button className="container-buttons">
+                      <span className="bold">Back</span>
                     </button>
-                  </div>
+                  </Link>
+
+                  <button
+                    className="container-buttons button-save"
+                    onClick={this.handleSubmit}
+                  >
+                    <span className="bold">Save</span>
+                  </button>
                 </div>
               </div>
             </div>

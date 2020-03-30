@@ -121,7 +121,8 @@ class ProductProvider extends React.Component {
     const x = this.state.products;
     const name = this.state.edit.product.name;
     const index = this.state.edit.index;
-    x.splice(this.state.products[index], 1, product);
+    x.splice([index], 1, product);
+    console.log(this.state.products);
     this.saveQuantity(index, name);
   };
 

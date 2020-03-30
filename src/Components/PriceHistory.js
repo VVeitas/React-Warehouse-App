@@ -18,19 +18,18 @@ class PriceHistory extends React.Component {
 
   getProductNameUrl = () => {
     var name = window.location.href.split("/")[4];
-    this.QuantityGraph(name);
+    this.PriceGraph(name);
   };
 
-  QuantityGraph = (name) => {
-    const quantityStorage = name + "Q";
-    if (localStorage.getItem(quantityStorage) === null) {
+  PriceGraph = (name) => {
+    const priceStorage = name + "P";
+    if (localStorage.getItem(priceStorage) === null) {
       this.setState({ series: [] });
     } else {
-      var data = JSON.parse(localStorage.getItem(quantityStorage));
+      var data = JSON.parse(localStorage.getItem(priceStorage));
     }
-    const quantityData = data.map(({ quantity }) => parseInt(quantity, 10));
-    const xAxis = data.map((data) => data.quantityChangeDate);
-    console.log(xAxis);
+    const priceData = data.map(({ price }) => parseInt(price, 10));
+    const xAxis = data.map((data) => data.priceChangeDate);
     this.setState({
       options: {
         title: {
@@ -38,7 +37,7 @@ class PriceHistory extends React.Component {
         },
         series: [
           {
-            data: [...quantityData]
+            data: [...priceData]
           }
         ],
         xAxis: {
@@ -57,7 +56,7 @@ class PriceHistory extends React.Component {
             <div className="list1"></div>
 
             <div className="containers view-container">
-              <h2 className="view-h2">Quantity History </h2>
+              <h2 className="view-h2">{name} Price History </h2>
 
               <div className="view-tabs">
                 <div className="row">
