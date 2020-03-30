@@ -4,8 +4,9 @@ import { ProductConsumer } from "../Context";
 import Product from "./Product";
 import Create from "./Create";
 import View from "./View";
+import Edit from "./Edit";
 
-class Homepage extends React.Component {
+class Products extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -78,8 +79,8 @@ class Homepage extends React.Component {
                     <div className="col-1 list-container collumn border-right"></div>
                     <div className="col-1 collumn border-right"></div>
                     <div className="col-1 collumn border-right"></div>
-                    <div className="col-1 collumn collumn border-right"></div>
-                    <div className="col-1 collumn collumn border-right"></div>
+                    <div className="col-1 collumn border-right"></div>
+                    <div className="col-1 collumn border-right"></div>
                     <div className="buttons-collumn">
                       <Link to="/create">
                         <button
@@ -102,6 +103,17 @@ class Homepage extends React.Component {
                   />
                   <Route
                     exact
+                    path="/products/:id/edit"
+                    component={() => (
+                      <Edit
+                        products={value.products}
+                        id={value.editProdcut}
+                        edit1Product={value.edit1Product}
+                      />
+                    )}
+                  />
+                  <Route
+                    exact
                     path="/products/:id/quantityhistory"
                     component={() => <View currentView={value.currentView} />}
                   />
@@ -115,4 +127,4 @@ class Homepage extends React.Component {
   }
 }
 
-export default Homepage;
+export default Products;

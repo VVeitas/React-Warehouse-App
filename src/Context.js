@@ -20,13 +20,14 @@ class ProductProvider extends React.Component {
     }
   };
 
-  create = (param) => {
-    const update = this.state.products.concat(param);
+  create = (product) => {
+    const update = this.state.products.concat(product);
     const index = this.state.products.length;
+    const name = product.name;
     this.setState({ products: update }, () => {
       this.saveLocalStorage();
-      this.saveQuantity(index, param.name);
-      this.savePrice(index, param.name);
+      this.saveQuantity(index, name);
+      this.savePrice(index, name);
     });
   };
 
@@ -47,7 +48,12 @@ class ProductProvider extends React.Component {
 
   saveQuantity = (index, name) => {
     const x = this.state.products[index];
-    this.state.products[index].quantityChangeDate = new Date();
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    this.state.products[index].quantityChangeDate =
+      day + "-" + month + "-" + year;
     const y = [x];
     const name1 = name + "Q";
     if (localStorage.getItem(name1) === null) {
@@ -70,7 +76,12 @@ class ProductProvider extends React.Component {
 
   savePrice = (index, name) => {
     const x = this.state.products[index];
-    this.state.products[index].priceChangeDate = new Date();
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    this.state.products[index].priceChangeDate = day + "-" + month + "-" + year;
+
     const y = [x];
     const name1 = name + "P";
     if (localStorage.getItem(name1) === null) {
@@ -103,13 +114,15 @@ class ProductProvider extends React.Component {
   };
 
   editProduct = (product, index) => {
-    this.setState({ edit: product, index: index });
+    this.setState({ edit: { product: product, index: index } });
   };
 
   edit1Product = (product) => {
     const x = this.state.products;
-    x.splice(this.state.index, 1, product);
-    this.saveQuantity();
+    const name = this.state.edit.product.name;
+    const index = this.state.edit.index;
+    x.splice(this.state.products[index], 1, product);
+    this.saveQuantity(index, name);
   };
 
   edit2Product = (product, product1) => {
@@ -136,8 +149,8 @@ class ProductProvider extends React.Component {
     this.saveLocalStorage();
   };
 
-  viewProduct = (name) => {
-    this.setState({ currentView: name });
+  viewProduct = (name, product) => {
+    this.setState({ currentView: name, product: product });
   };
   render() {
     const id = this.state.products.length;
@@ -145,6 +158,7 @@ class ProductProvider extends React.Component {
       <ProductContext.Provider
         value={{
           products: this.state.products,
+          product: this.state.product,
           create: this.create,
           save: this.saveLocalStorage,
           saveList: this.saveList,
@@ -162,6 +176,7 @@ class ProductProvider extends React.Component {
           disableProduct: this.disableProduct,
           saveChanges: this.saveChanges,
           savePrice: this.savePrice,
+          viewProduct: this.viewProduct,
           currentView: this.state.currentView
         }}
       >

@@ -35,11 +35,11 @@ class Product extends React.Component {
     }
   };
 
-  highlightStyle = () => {
+  highligthStyle = () => {
     if (this.props.product.quantity <= 0) {
-      return "highlight col-1 collumn border-right ";
+      return "highlight product-container";
     } else {
-      return "col-1 collumn border-right";
+      return "product-container";
     }
   };
 
@@ -51,7 +51,7 @@ class Product extends React.Component {
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="product-container">
+            <div className={this.highligthStyle()}>
               <div className="row">
                 <div className="col-1 collumn border-right disable-switch">
                   <span className="text-collumn">
@@ -66,7 +66,7 @@ class Product extends React.Component {
                 <div className="col-1 collumn border-right ">
                   <span className="text-collumn">{name}</span>
                 </div>
-                <div className={this.highlightStyle()}>
+                <div className="col-1 collumn border-right">
                   <input
                     className="list-input"
                     type="number"
@@ -86,7 +86,7 @@ class Product extends React.Component {
                 </div>
                 <div className="col-1 list-container collumn border-right">
                   <button
-                    className="inlist-save"
+                    className="inlist-save product-button"
                     onClick={() => {
                       value.saveChanges(index, name);
                     }}
@@ -109,7 +109,14 @@ class Product extends React.Component {
 
                 <div className="buttons-collumn">
                   <Link to={`/products/${name}/quantityhistory`}>
-                    <button className="product-button view ">VIEW</button>
+                    <button
+                      className="product-button view"
+                      onClick={() => {
+                        value.viewProduct(name, product);
+                      }}
+                    >
+                      VIEW
+                    </button>
                   </Link>
                   <Link to={`/products/${name}/edit`}>
                     <button

@@ -35,9 +35,11 @@ class Edit extends React.Component {
           ean: this.ean.current.value,
           type: this.type.current.value,
           weight: this.weight.current.value,
-          color: this.color.current.value
+          color: this.color.current.value,
+          active: true
         }
       },
+
       () => {
         this.props.edit1Product(this.state.newproduct);
       }
@@ -45,83 +47,124 @@ class Edit extends React.Component {
   };
 
   render() {
+    const newproduct = this.state.newproduct;
     return (
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="list">
-              <h2>Edit item</h2>
-              <div className="col-2">Name</div>
-
-              <input
-                type="text"
-                ref={this.name}
-                defaultValue={value.edit.name}
-              ></input>
-              <div className="col-1">Quantity</div>
-              <div className="col-1">Price</div>
-              <div className="col-1">EAN</div>
-              <div className="col-1">Type</div>
-              <div className="col-1">Weight</div>
-              <div className="col-1">Color</div>
-              <div className="col-1">Active</div>
-              <form>
+            <div className="list1"></div>
+            <div className="containers">
+              <div className="text-forms">
+                <h2>Edit item</h2>
+                <form>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">Name</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.name}
+                        defaultValue={value.edit.product.name}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">Quantity</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="number"
+                        ref={this.quantity}
+                        defaultValue={value.edit.product.quantity}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">Price</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="number"
+                        ref={this.price}
+                        defaultValue={value.edit.product.price}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">EAN</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.ean}
+                        defaultValue={value.edit.product.ean}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">Type</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.type}
+                        defaultValue={value.edit.product.type}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">Weight</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="number"
+                        ref={this.weight}
+                        defaultValue={value.edit.product.weight}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 collumn ">
+                      <span className="text-collumn bold">Color</span>
+                    </div>
+                    <div className="col-6">
+                      <input
+                        className="input-collumn"
+                        type="text"
+                        ref={this.color}
+                        defaultValue={value.edit.product.color}
+                      ></input>
+                    </div>
+                  </div>
+                </form>
                 <div className="row">
-                  <div className="col-2"></div>
-                  <div className="col-1">
-                    <input
-                      type="number"
-                      ref={this.quantity}
-                      defaultValue={value.edit.quantity}
-                    ></input>
-                  </div>
-                  <div className="col-1">
-                    <input
-                      type="text"
-                      ref={this.price}
-                      defaultValue={value.edit.price}
-                    ></input>
-                  </div>
-                  <div className="col-1">
-                    <input
-                      type="text"
-                      ref={this.ean}
-                      defaultValue={value.edit.ean}
-                    ></input>
-                  </div>
-                  <div className="col-1">
-                    <input
-                      type="text"
-                      ref={this.type}
-                      defaultValue={value.edit.type}
-                    ></input>
-                  </div>
-                  <div className="col-1">
-                    <input
-                      type="text"
-                      ref={this.weight}
-                      defaultValue={value.edit.weight}
-                    ></input>
-                  </div>
-                  <div className="col-1">
-                    <input
-                      type="text"
-                      ref={this.color}
-                      defaultValue={value.edit.color}
-                    ></input>
+                  <div className="col-12">
+                    <Link to="/products">
+                      <button className="container-buttons">
+                        <span className="bold">Back</span>
+                      </button>
+                    </Link>
+
+                    <button
+                      className="container-buttons button-save"
+                      onClick={this.handleSubmit}
+                    >
+                      <span className="bold">Save</span>
+                    </button>
                   </div>
                 </div>
-              </form>
-              <div className="menu">
-                <Link to="/products">
-                  <button className="add bold">Back</button>
-                </Link>
-                <button
-                  className="button-save add bold"
-                  onClick={this.handleSubmit}
-                >
-                  Save
-                </button>
               </div>
             </div>
           </React.Fragment>

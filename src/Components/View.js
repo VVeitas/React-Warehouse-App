@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import QuantityHistory from "./QuantityHistory";
 import PriceHistory from "./PriceHistory";
+import ProductDetails from "./ProductDetails";
 
 class View extends React.Component {
   constructor(props) {
@@ -20,13 +21,27 @@ class View extends React.Component {
             <Router>
               <Route
                 exact
+                path="/products/:id/productdetails"
+                component={() => (
+                  <ProductDetails
+                    currentView={this.props.currentView}
+                    product={value.product}
+                  />
+                )}
+              />
+              <Route
+                exact
                 path="/products/:id/quantityhistory"
-                component={QuantityHistory}
+                component={() => (
+                  <QuantityHistory currentView={this.props.currentView} />
+                )}
               />
               <Route
                 exact
                 path="/products/:id/pricehistory"
-                component={PriceHistory}
+                component={() => (
+                  <PriceHistory currentView={this.props.currentView} />
+                )}
               />
             </Router>
           </React.Fragment>

@@ -29,7 +29,8 @@ class QuantityHistory extends React.Component {
       var data = JSON.parse(localStorage.getItem(quantityStorage));
     }
     const quantityData = data.map(({ quantity }) => parseInt(quantity, 10));
-
+    const xAxis = data.map((data) => data.quantityChangeDate);
+    console.log(xAxis);
     this.setState({
       options: {
         title: {
@@ -41,14 +42,14 @@ class QuantityHistory extends React.Component {
           }
         ],
         xAxis: {
-          categories: [data[0].quantityChangeDate, "B", "C", "C", "C"]
+          categories: xAxis
         }
       }
     });
-    console.log(this.state.options.series);
   };
 
   render() {
+    var name = this.props.currentView;
     return (
       <ProductConsumer>
         {(value) => (
@@ -57,6 +58,20 @@ class QuantityHistory extends React.Component {
 
             <div className="containers view-container">
               <h2 className="view-h2">Quantity History </h2>
+
+              <div className="view-tabs">
+                <div className="row">
+                  <Link to={`/products/${name}/productdetails`}>
+                    <p className="tab-text">Product Details</p>
+                  </Link>
+                  <Link to={`/products/${name}/quantityhistory`}>
+                    <p className="tab-text">Quantity History</p>
+                  </Link>
+                  <Link to={`/products/${name}/pricehistory`}>
+                    <p className="tab-text">Price History</p>
+                  </Link>
+                </div>
+              </div>
               <div className="charts">
                 <HighchartsReact
                   highcharts={Highcharts}

@@ -33,17 +33,6 @@ class App extends React.Component {
                   path="/create"
                   component={() => <Products create={value.create} />}
                 />
-                <Route
-                  exact
-                  path="/products/:id/edit"
-                  component={() => (
-                    <Edit
-                      products={value.products}
-                      id={value.editProdcut}
-                      edit1Product={value.edit1Product}
-                    />
-                  )}
-                />
               </Router>
             </div>
           </React.Fragment>

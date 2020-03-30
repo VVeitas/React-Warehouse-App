@@ -7,7 +7,7 @@ body {
 
 @media only screen and (max-width: 1200px) {
   body {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 
@@ -160,6 +160,7 @@ input[type="number"] {
   margin: 0 3px 0 3px;
   border-radius: 6px;
   border: none;
+  cursor: pointer;
   height: 30px;
   padding: 0 10px 0 10px;
   font-weight: bold;
@@ -208,7 +209,7 @@ input[type="number"] {
 
 .view-container {
   width: 1050px;
-  height: 630px;
+  height: 680px;
   position: absolute;
   z-index: 2;
   padding: 40px;
@@ -258,6 +259,12 @@ input[type="number"] {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
+}
+
+.inlist-save:focus {
+  outline: none;
 }
 
 .list-container-buttons {
@@ -281,10 +288,23 @@ input[type="number"] {
 }
 
 .highlight {
-  background-color: lightgray;
+  color: red;
 }
 
 .create-new-item {
   margin-left: 15px;
   background-color: greenyellow;
+}
+
+.view-tabs {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+}
+
+.tab-text {
+  margin: 10px;
+  font-size: 17px;
 }
