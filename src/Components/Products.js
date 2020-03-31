@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import Product from "./Product";
@@ -99,7 +99,9 @@ class Products extends React.Component {
                   <Route
                     exact
                     path="/create"
-                    component={() => <Create create={value.create} />}
+                    component={() => (
+                      <Create createProduct={value.createProduct} />
+                    )}
                   />
                   <Route
                     exact
@@ -108,7 +110,7 @@ class Products extends React.Component {
                       <Edit
                         products={value.products}
                         id={value.editProdcut}
-                        edit1Product={value.edit1Product}
+                        editProduct={value.editProduct}
                       />
                     )}
                   />

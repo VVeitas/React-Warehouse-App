@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Homepage from "./Components/Homepage";
+import Default from "./Components/Default";
 import Products from "./Components/Products";
 import { ProductConsumer } from "./Context";
 
@@ -18,18 +18,22 @@ class App extends React.Component {
           <React.Fragment>
             <div className="app">
               <Router>
-                <Route exact path="/" component={Homepage} />
-                <Route exact path="/products" component={Products} />
-                <Route
-                  exact
-                  path="/products/:id/:id"
-                  component={() => <Products currentView={value.currentView} />}
-                />
-                <Route
-                  exact
-                  path="/create"
-                  component={() => <Products create={value.create} />}
-                />
+                <Switch>
+                  <Route exact path="/products" component={Products} />
+                  <Route
+                    exact
+                    path="/products/:id/:id"
+                    component={() => (
+                      <Products currentView={value.currentView} />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/create"
+                    component={() => <Products create={value.create} />}
+                  />
+                  <Route component={Default} />
+                </Switch>
               </Router>
             </div>
           </React.Fragment>

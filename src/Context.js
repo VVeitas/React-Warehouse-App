@@ -1,5 +1,4 @@
 import React from "react";
-import { Products } from "./Components/Data";
 
 const ProductContext = React.createContext();
 
@@ -7,11 +6,11 @@ class ProductProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: Products
+      products: []
     };
   }
 
-  componentWillMount = () => {
+  UNSAFE_componentWillMount = () => {
     if (localStorage.getItem("inventory") === null) {
       this.setState({ products: [] });
     } else {
@@ -20,7 +19,7 @@ class ProductProvider extends React.Component {
     }
   };
 
-  create = (product) => {
+  createProduct = (product) => {
     const update = this.state.products.concat(product);
     const index = this.state.products.length;
     const name = product.name;
@@ -47,97 +46,92 @@ class ProductProvider extends React.Component {
   };
 
   saveQuantity = (index, name) => {
-    const x = this.state.products[index];
+    const product = this.state.products[index];
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     this.state.products[index].quantityChangeDate =
       day + "-" + month + "-" + year;
-    const y = [x];
+    const product1 = [product];
     const name1 = name + "Q";
     if (localStorage.getItem(name1) === null) {
-      localStorage.setItem(name1, JSON.stringify(y));
+      localStorage.setItem(name1, JSON.stringify(product1));
     } else {
-      const z = JSON.parse(localStorage.getItem(name1));
+      const productArray = JSON.parse(localStorage.getItem(name1));
 
-      const arrayLength = z.length;
-      z.push(x);
-      if (z[arrayLength - 1].quantity == z[arrayLength].quantity) {
-        z.pop();
+      const arrayLength = productArray.length;
+      productArray.push(product);
+      if (
+        productArray[arrayLength - 1].quantity ===
+        productArray[arrayLength].quantity
+      ) {
+        productArray.pop();
       }
-      if (z.length > 5) {
-        z.shift();
+      if (productArray.length > 5) {
+        productArray.shift();
       }
-      localStorage.setItem(name1, JSON.stringify(z));
+      localStorage.setItem(name1, JSON.stringify(productArray));
     }
     this.saveList();
   };
 
   savePrice = (index, name) => {
-    const x = this.state.products[index];
+    const product = this.state.products[index];
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     this.state.products[index].priceChangeDate = day + "-" + month + "-" + year;
 
-    const y = [x];
+    const product1 = [product];
     const name1 = name + "P";
     if (localStorage.getItem(name1) === null) {
-      localStorage.setItem(name1, JSON.stringify(y));
+      localStorage.setItem(name1, JSON.stringify(product1));
     } else {
-      const z = JSON.parse(localStorage.getItem(name1));
+      const productArray = JSON.parse(localStorage.getItem(name1));
 
-      const arrayLength = z.length;
-      z.push(x);
-      if (z[arrayLength - 1].price == z[arrayLength].price) {
-        z.pop();
+      const arrayLength = productArray.length;
+      productArray.push(product);
+      if (
+        productArray[arrayLength - 1].price === productArray[arrayLength].price
+      ) {
+        productArray.pop();
       }
-      if (z.length > 5) {
-        z.shift();
+      if (productArray.length > 5) {
+        productArray.shift();
       }
-      localStorage.setItem(name1, JSON.stringify(z));
+      localStorage.setItem(name1, JSON.stringify(productArray));
     }
     this.saveList();
   };
 
   deleteProduct = (index, name) => {
-    console.log(index);
     this.state.products.splice(index, 1);
-    const x = this.state.products;
-    localStorage.setItem("inventory", JSON.stringify(x));
-    this.setState({ products: x }, () => {
+    const productsArray = this.state.products;
+    localStorage.setItem("inventory", JSON.stringify(productsArray));
+    this.setState({ products: productsArray }, () => {
       localStorage.removeItem(name + "Q");
       localStorage.removeItem(name + "P");
     });
   };
 
-  editProduct = (product, index) => {
-    this.setState({ edit: { product: product, index: index } });
+  viewProduct = (name, product, index) => {
+    this.setState({
+      product: product,
+      index: index
+    });
   };
 
-  edit1Product = (product) => {
-    const x = this.state.products;
-    const name = this.state.edit.product.name;
-    const index = this.state.edit.index;
-    x.splice([index], 1, product);
-    console.log(this.state.products);
+  editProduct = (product) => {
+    const productsArray = this.state.products;
+    const index = this.state.index;
+    productsArray.splice([index], 1, product);
     this.saveQuantity(index, product.name);
     this.savePrice(index, product.name);
-    localStorage.removeItem(name + "Q");
-    localStorage.removeItem(name + "P");
   };
 
-  edit2Product = (product) => {
-    console.log(product);
-  };
-
-  quantity = (index) => {
-    const x = this.state.products[index].quantity;
-    return x;
-  };
-  changeQuantity = (e, index, name) => {
+  changeQuantity = (e, index) => {
     this.state.products[index].quantity = e.target.value;
   };
 
@@ -153,35 +147,27 @@ class ProductProvider extends React.Component {
     this.saveLocalStorage();
   };
 
-  viewProduct = (name, product) => {
-    this.setState({ currentView: name, product: product });
-  };
   render() {
-    const id = this.state.products.length;
     return (
       <ProductContext.Provider
         value={{
           products: this.state.products,
           product: this.state.product,
-          create: this.create,
+          createProduct: this.createProduct,
           save: this.saveLocalStorage,
           saveList: this.saveList,
-          id: id,
           deleteProduct: this.deleteProduct,
           editProduct: this.editProduct,
-          edit1Product: this.edit1Product,
           edit2Product: this.edit2Product,
           edit: this.state.edit,
           index: this.state.index,
           editSave: this.editSave,
-          quantity: this.quantity,
           changeQuantity: this.changeQuantity,
           changePrice: this.changePrice,
           disableProduct: this.disableProduct,
           saveChanges: this.saveChanges,
           savePrice: this.savePrice,
-          viewProduct: this.viewProduct,
-          currentView: this.state.currentView
+          viewProduct: this.viewProduct
         }}
       >
         {this.props.children}

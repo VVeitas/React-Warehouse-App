@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 
 class Product extends React.Component {
@@ -20,10 +20,6 @@ class Product extends React.Component {
 
   disableProduct = (index) => {
     this.props.disableProduct(index);
-    const active = JSON.parse(localStorage.getItem("inventory"));
-    const status = active[index].active;
-    console.log(status);
-    this.setState({ x: this.props.product.active });
     this.props.saveList();
   };
 
@@ -44,9 +40,9 @@ class Product extends React.Component {
   };
 
   render() {
+    const product = this.props.product;
     const { name, ean, type, weight, color, active } = this.props.product;
     const index = this.props.index;
-    const product = this.props.product;
     return (
       <ProductConsumer>
         {(value) => (
@@ -63,7 +59,7 @@ class Product extends React.Component {
                     />
                   </span>
                 </div>
-                <div className="col-1 collumn border-right ">
+                <div className="col-1 collumn border-right">
                   <span className="text-collumn">{name}</span>
                 </div>
                 <div className="col-1 collumn border-right">
@@ -91,7 +87,7 @@ class Product extends React.Component {
                       value.saveChanges(index, name);
                     }}
                   >
-                    <i class="fa fa-save"></i>
+                    <i className="fa fa-save"></i>
                   </button>
                 </div>
                 <div className="col-1 collumn border-right">
@@ -112,7 +108,7 @@ class Product extends React.Component {
                     <button
                       className="product-button view"
                       onClick={() => {
-                        value.viewProduct(name, product);
+                        value.viewProduct(name, product, index);
                       }}
                     >
                       VIEW
@@ -122,7 +118,7 @@ class Product extends React.Component {
                     <button
                       className="product-button edit"
                       onClick={() => {
-                        value.editProduct(product, index);
+                        value.viewProduct(name, product, index);
                       }}
                     >
                       EDIT

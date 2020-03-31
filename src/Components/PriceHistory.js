@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import Highcharts from "highcharts";
@@ -7,9 +7,7 @@ import HighchartsReact from "highcharts-react-official";
 class PriceHistory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      options: {}
-    };
+    this.state = {};
   }
 
   componentDidMount = () => {
@@ -37,7 +35,8 @@ class PriceHistory extends React.Component {
         },
         series: [
           {
-            data: [...priceData]
+            data: [...priceData],
+            showInLegend: false
           }
         ],
         xAxis: {
@@ -48,25 +47,25 @@ class PriceHistory extends React.Component {
   };
 
   render() {
-    var name = this.props.currentView;
+    var product = this.props.product;
     return (
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="list1"></div>
+            <div className="cover"></div>
 
             <div className="containers view-container">
-              <h2 className="view-h2">{name} Price History </h2>
+              <h2 className="view-h2">{product.name} Price History </h2>
 
               <div className="view-tabs">
                 <div className="row">
-                  <Link to={`/products/${name}/productdetails`}>
+                  <Link to={`/products/${product.name}/productdetails`}>
                     <p className="tab-text">Product Details</p>
                   </Link>
-                  <Link to={`/products/${name}/quantityhistory`}>
+                  <Link to={`/products/${product.name}/quantityhistory`}>
                     <p className="tab-text">Quantity History</p>
                   </Link>
-                  <Link to={`/products/${name}/pricehistory`}>
+                  <Link to={`/products/${product.name}/pricehistory`}>
                     <p className="tab-text">Price History</p>
                   </Link>
                 </div>

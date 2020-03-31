@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 import QuantityHistory from "./QuantityHistory";
 import PriceHistory from "./PriceHistory";
@@ -22,26 +22,17 @@ class View extends React.Component {
               <Route
                 exact
                 path="/products/:id/productdetails"
-                component={() => (
-                  <ProductDetails
-                    currentView={this.props.currentView}
-                    product={value.product}
-                  />
-                )}
+                component={() => <ProductDetails product={value.product} />}
               />
               <Route
                 exact
                 path="/products/:id/quantityhistory"
-                component={() => (
-                  <QuantityHistory currentView={this.props.currentView} />
-                )}
+                component={() => <QuantityHistory product={value.product} />}
               />
               <Route
                 exact
                 path="/products/:id/pricehistory"
-                component={() => (
-                  <PriceHistory currentView={this.props.currentView} />
-                )}
+                component={() => <PriceHistory product={value.product} />}
               />
             </Router>
           </React.Fragment>

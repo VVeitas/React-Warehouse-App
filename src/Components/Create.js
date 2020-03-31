@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 
 class Create extends React.Component {
@@ -12,16 +12,7 @@ class Create extends React.Component {
     this.type = React.createRef();
     this.weight = React.createRef();
     this.color = React.createRef();
-    this.state = {
-      newproduct: {
-        name: "",
-        ean: "",
-        type: "",
-        weight: "",
-        color: "",
-        active: true
-      }
-    };
+    this.state = {};
   }
   handleSubmit = (e) => {
     if (
@@ -46,21 +37,25 @@ class Create extends React.Component {
             weight: this.weight.current.value,
             color: this.color.current.value,
             active: true
-          }
+          },
+          navigate: true
         },
         () => {
-          this.props.create(this.state.newproduct);
+          this.props.createProduct(this.state.newproduct);
         }
       );
     }
   };
   render() {
-    const newproduct = this.state.newproduct;
+    const { navigate } = this.state;
+    if (navigate) {
+      return <Redirect to="/products" push={true} />;
+    }
     return (
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="list1"></div>
+            <div className="cover"></div>
             <div className="containers">
               <div className="text-forms">
                 <h2>Add new item</h2>
@@ -157,7 +152,7 @@ class Create extends React.Component {
                 </Link>
 
                 <button
-                  className="container-buttons center button-save"
+                  className="container-buttons button-save center"
                   onClick={this.handleSubmit}
                 >
                   <span className="bold">Save</span>

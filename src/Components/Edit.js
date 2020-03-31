@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect } from "react-router";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 
 class Edit extends React.Component {
@@ -13,18 +13,7 @@ class Edit extends React.Component {
     this.type = React.createRef();
     this.weight = React.createRef();
     this.color = React.createRef();
-    this.state = {
-      newproduct: {
-        name: "",
-        quantity: "",
-        price: "",
-        ean: "",
-        type: "",
-        weight: "",
-        color: "",
-        active: true
-      }
-    };
+    this.state = {};
   }
   handleSubmit = (e) => {
     if (
@@ -54,7 +43,7 @@ class Edit extends React.Component {
         },
 
         () => {
-          this.props.edit1Product(this.state.newproduct);
+          this.props.editProduct(this.state.newproduct);
         }
       );
     }
@@ -69,7 +58,7 @@ class Edit extends React.Component {
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="list1"></div>
+            <div className="cover"></div>
             <div className="containers">
               <div className="text-forms">
                 <h2>Edit item</h2>
@@ -83,7 +72,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="text"
                         ref={this.name}
-                        defaultValue={value.edit.product.name}
+                        defaultValue={value.product.name}
                       ></input>
                     </div>
                   </div>
@@ -96,7 +85,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="number"
                         ref={this.quantity}
-                        defaultValue={value.edit.product.quantity}
+                        defaultValue={value.product.quantity}
                       ></input>
                     </div>
                   </div>
@@ -109,7 +98,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="number"
                         ref={this.price}
-                        defaultValue={value.edit.product.price}
+                        defaultValue={value.product.price}
                       ></input>
                     </div>
                   </div>
@@ -122,7 +111,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="text"
                         ref={this.ean}
-                        defaultValue={value.edit.product.ean}
+                        defaultValue={value.product.ean}
                       ></input>
                     </div>
                   </div>
@@ -135,7 +124,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="text"
                         ref={this.type}
-                        defaultValue={value.edit.product.type}
+                        defaultValue={value.product.type}
                       ></input>
                     </div>
                   </div>
@@ -148,7 +137,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="number"
                         ref={this.weight}
-                        defaultValue={value.edit.product.weight}
+                        defaultValue={value.product.weight}
                       ></input>
                     </div>
                   </div>
@@ -161,7 +150,7 @@ class Edit extends React.Component {
                         className="input-collumn"
                         type="text"
                         ref={this.color}
-                        defaultValue={value.edit.product.color}
+                        defaultValue={value.product.color}
                       ></input>
                     </div>
                   </div>

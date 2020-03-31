@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../Context";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -49,26 +47,25 @@ class ProductDetails extends React.Component {
   };
 
   render() {
-    var name = this.props.currentView;
     var product = this.props.product;
     return (
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="list1"></div>
+            <div className="cover"></div>
 
             <div className="containers details-container">
               <h2 className="view-h2">Product Details </h2>
 
               <div className="view-tabs">
                 <div className="row">
-                  <Link to={`/products/${name}/productdetails`}>
+                  <Link to={`/products/${product.name}/productdetails`}>
                     <p className="tab-text">Product Details</p>
                   </Link>
-                  <Link to={`/products/${name}/quantityhistory`}>
+                  <Link to={`/products/${product.name}/quantityhistory`}>
                     <p className="tab-text">Quantity History</p>
                   </Link>
-                  <Link to={`/products/${name}/pricehistory`}>
+                  <Link to={`/products/${product.name}/pricehistory`}>
                     <p className="tab-text">Price History</p>
                   </Link>
                 </div>
@@ -88,7 +85,6 @@ class ProductDetails extends React.Component {
                       <h5 className="product-details-h5 ">Quantity:</h5>
                     </div>
                     <div className="col-6">
-                      {" "}
                       <h5 className="product-details-h5 lighter">
                         {product.quantity}
                       </h5>
