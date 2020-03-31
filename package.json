@@ -1,5 +1,6 @@
 {
   "name": "warehouse-management-app1",
+  "homepage": "/products",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

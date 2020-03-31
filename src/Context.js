@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Products } from "./Components/Data";
 
 const ProductContext = React.createContext();
@@ -123,10 +123,13 @@ class ProductProvider extends React.Component {
     const index = this.state.edit.index;
     x.splice([index], 1, product);
     console.log(this.state.products);
-    this.saveQuantity(index, name);
+    this.saveQuantity(index, product.name);
+    this.savePrice(index, product.name);
+    localStorage.removeItem(name + "Q");
+    localStorage.removeItem(name + "P");
   };
 
-  edit2Product = (product, product1) => {
+  edit2Product = (product) => {
     console.log(product);
   };
 

@@ -1,12 +1,9 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Homepage from "./Components/Homepage";
 import Products from "./Components/Products";
-import View from "./Components/View";
-import Create from "./Components/Create";
 import { ProductConsumer } from "./Context";
-import Edit from "./Components/Edit";
 
 class App extends React.Component {
   constructor(props) {

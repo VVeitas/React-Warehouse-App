@@ -66,8 +66,8 @@ class Create extends React.Component {
                 <h2>Add new item</h2>
                 <form>
                   <div className="row">
-                    <div className="col-6 collumn ">
-                      <h5 className="product-details-h5">Name</h5>
+                    <div className="col-6 collumn">
+                      <span className="text-collumn bold">Name</span>
                     </div>
                     <div className="col-6">
                       <input
@@ -78,7 +78,7 @@ class Create extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Quantity</span>
                     </div>
                     <div className="col-6">
@@ -90,8 +90,8 @@ class Create extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
-                      <span className="text-collumn bold">Price</span>
+                    <div className="col-6 collumn">
+                      <span className="text-collumn bold">Price, €</span>
                     </div>
                     <div className="col-6">
                       <input
@@ -102,7 +102,7 @@ class Create extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">EAN</span>
                     </div>
                     <div className="col-6">
@@ -114,7 +114,7 @@ class Create extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Type</span>
                     </div>
                     <div className="col-6">
@@ -126,8 +126,8 @@ class Create extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
-                      <span className="text-collumn bold">Weight</span>
+                    <div className="col-6 collumn">
+                      <span className="text-collumn bold">Weight, kg</span>
                     </div>
                     <div className="col-6">
                       <input
@@ -150,20 +150,18 @@ class Create extends React.Component {
                     </div>
                   </div>
                 </form>
-                <div className="col-12">
-                  <Link to="/products">
-                    <button className="container-buttons">
-                      <span className="bold">Back</span>
-                    </button>
-                  </Link>
-
-                  <button
-                    className="container-buttons button-save"
-                    onClick={this.handleSubmit}
-                  >
-                    <span className="bold">Save</span>
+                <Link to="/products">
+                  <button className="container-buttons center">
+                    <span className="bold">Back</span>
                   </button>
-                </div>
+                </Link>
+
+                <button
+                  className="container-buttons center button-save"
+                  onClick={this.handleSubmit}
+                >
+                  <span className="bold">Save</span>
+                </button>
               </div>
             </div>
           </React.Fragment>

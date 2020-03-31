@@ -101,7 +101,7 @@ class Product extends React.Component {
                   <span className="text-collumn">{type}</span>
                 </div>
                 <div className="col-1 collumn border-right">
-                  <span className="text-collumn">{weight}</span>
+                  <span className="text-collumn">{weight} kg</span>
                 </div>
                 <div className="col-1 collumn collumn border-right">
                   <span className="text-collumn">{color}</span>

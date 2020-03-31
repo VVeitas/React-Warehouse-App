@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import { ProductConsumer } from "../Context";
 
@@ -26,28 +27,44 @@ class Edit extends React.Component {
     };
   }
   handleSubmit = (e) => {
-    this.setState(
-      {
-        newproduct: {
-          name: this.name.current.value,
-          price: this.price.current.value,
-          quantity: this.quantity.current.value,
-          ean: this.ean.current.value,
-          type: this.type.current.value,
-          weight: this.weight.current.value,
-          color: this.color.current.value,
-          active: true
-        }
-      },
+    if (
+      this.name.current.value === "" ||
+      this.quantity.current.value === "" ||
+      this.price.current.value === "" ||
+      this.ean.current.value === "" ||
+      this.type.current.value === "" ||
+      this.weight.current.value === "" ||
+      this.color.current.value === ""
+    ) {
+      alert("All fields must be completed ");
+    } else {
+      this.setState(
+        {
+          newproduct: {
+            name: this.name.current.value,
+            price: this.price.current.value,
+            quantity: this.quantity.current.value,
+            ean: this.ean.current.value,
+            type: this.type.current.value,
+            weight: this.weight.current.value,
+            color: this.color.current.value,
+            active: true
+          },
+          navigate: true
+        },
 
-      () => {
-        this.props.edit1Product(this.state.newproduct);
-      }
-    );
+        () => {
+          this.props.edit1Product(this.state.newproduct);
+        }
+      );
+    }
   };
 
   render() {
-    const newproduct = this.state.newproduct;
+    const { navigate } = this.state;
+    if (navigate) {
+      return <Redirect to="/products" push={true} />;
+    }
     return (
       <ProductConsumer>
         {(value) => (
@@ -85,7 +102,7 @@ class Edit extends React.Component {
                   </div>
                   <div className="row">
                     <div className="col-6 collumn ">
-                      <span className="text-collumn bold">Price</span>
+                      <span className="text-collumn bold">Price, €</span>
                     </div>
                     <div className="col-6">
                       <input
@@ -124,7 +141,7 @@ class Edit extends React.Component {
                   </div>
                   <div className="row">
                     <div className="col-6 collumn ">
-                      <span className="text-collumn bold">Weight</span>
+                      <span className="text-collumn bold">Weight, kg</span>
                     </div>
                     <div className="col-6">
                       <input
@@ -152,12 +169,12 @@ class Edit extends React.Component {
                 <div className="row">
                   <div className="col-12">
                     <Link to="/products">
-                      <button className="container-buttons">
+                      <button className="container-buttons center">
                         <span className="bold">Back</span>
                       </button>
                     </Link>
                     <button
-                      className="container-buttons button-save"
+                      className="container-buttons button-save center"
                       onClick={this.handleSubmit}
                     >
                       <span className="bold">Save</span>

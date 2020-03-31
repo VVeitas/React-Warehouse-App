@@ -74,46 +74,75 @@ class ProductDetails extends React.Component {
                 </div>
                 <div className="product-details ">
                   <div className="row">
-                    <h5 className="product-details-h5">Name:</h5>
-                    <h5 className="product-details-h5 lighter">
-                      {product.name}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5">Name:</h5>
+                    </div>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 lighter">
+                        {product.name}
+                      </h5>
+                    </div>
                   </div>
                   <div className="row">
-                    <h5 className="product-details-h5 ">Quantity:</h5>
-                    <h5 className="product-details-h5 lighter">
-                      {product.quantity}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 ">Quantity:</h5>
+                    </div>
+                    <div className="col-6">
+                      {" "}
+                      <h5 className="product-details-h5 lighter">
+                        {product.quantity}
+                      </h5>
+                    </div>
                   </div>
                   <div className="row">
-                    <h5 className="product-details-h5">Price:</h5>
-                    <h5 className="product-details-h5 lighter">
-                      {product.price}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5">Price:</h5>
+                    </div>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 lighter">
+                        {product.price}
+                      </h5>
+                    </div>
                   </div>
                   <div className="row">
-                    <h5 className="product-details-h5 ">Ean:</h5>
-                    <h5 className="product-details-h5 lighter">
-                      {product.ean}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 ">Ean:</h5>
+                    </div>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 lighter">
+                        {product.ean}
+                      </h5>
+                    </div>
                   </div>
                   <div className="row">
-                    <h5 className="product-details-h5">Type:</h5>
-                    <h5 className="product-details-h5 lighter">
-                      {product.type}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5">Type:</h5>
+                    </div>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 lighter">
+                        {product.type}
+                      </h5>
+                    </div>
                   </div>
                   <div className="row">
-                    <h5 className="product-details-h5 ">Weight:</h5>
-                    <h5 className="product-details-h5 lighter">
-                      {product.weight}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 ">Weight:</h5>
+                    </div>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 lighter">
+                        {product.weight}
+                      </h5>
+                    </div>
                   </div>
                   <div className="row">
-                    <h5 className="product-details-h5">Color:</h5>
-                    <h5 className="product-details-h5 lighter right">
-                      {product.color}
-                    </h5>
+                    <div className="col-6">
+                      <h5 className="product-details-h5">Color:</h5>
+                    </div>
+                    <div className="col-6">
+                      <h5 className="product-details-h5 lighter right">
+                        {product.color}
+                      </h5>
+                    </div>
                   </div>
                 </div>
                 <Link to="/products">
