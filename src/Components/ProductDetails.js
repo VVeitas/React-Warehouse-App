@@ -28,7 +28,6 @@ class ProductDetails extends React.Component {
     }
     const quantityData = data.map(({ quantity }) => parseInt(quantity, 10));
     const xAxis = data.map((data) => data.quantityChangeDate);
-    console.log(xAxis);
     this.setState({
       options: {
         title: {
@@ -92,7 +91,7 @@ class ProductDetails extends React.Component {
                   </div>
                   <div className="row">
                     <div className="col-6">
-                      <h5 className="product-details-h5">Price:</h5>
+                      <h5 className="product-details-h5">Price, €:</h5>
                     </div>
                     <div className="col-6">
                       <h5 className="product-details-h5 lighter">
@@ -122,7 +121,7 @@ class ProductDetails extends React.Component {
                   </div>
                   <div className="row">
                     <div className="col-6">
-                      <h5 className="product-details-h5 ">Weight:</h5>
+                      <h5 className="product-details-h5 ">Weight, kg:</h5>
                     </div>
                     <div className="col-6">
                       <h5 className="product-details-h5 lighter">

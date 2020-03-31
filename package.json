@@ -1,5 +1,5 @@
 {
-  "name": "warehouse-management-app1",
+  "name": "warehouse-management-app",
   "homepage": "/products",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "highcharts": "^8.0.4",
     "highcharts-react-official": "^3.0.0",
     "react": "^16.13.0",
+    "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
