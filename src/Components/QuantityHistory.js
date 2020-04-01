@@ -14,11 +14,16 @@ class QuantityHistory extends React.Component {
     this.getProductNameUrl();
   };
 
+  /*This function will get the name of the product from the url. That will be 
+  used for getting the item history from local storage and using that information 
+  in graph.*/
   getProductNameUrl = () => {
     var name = window.location.href.split("/")[4];
     this.QuantityGraph(name);
   };
 
+  /* Here we will get products information from local storage and will display 
+  it in graph. */
   QuantityGraph = (name) => {
     const quantityStorage = name + "Q";
     if (localStorage.getItem(quantityStorage) === null) {

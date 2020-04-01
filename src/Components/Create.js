@@ -14,6 +14,10 @@ class Create extends React.Component {
     this.color = React.createRef();
     this.state = {};
   }
+
+  /*Handling all the input information and fetching that to context file where 
+  new product in array will be created.
+  If any of the input fields are empty this function will fire alert*/
   handleSubmit = (e) => {
     if (
       this.name.current.value === "" ||

@@ -10,41 +10,6 @@ class ProductDetails extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    this.getProductNameUrl();
-  };
-
-  getProductNameUrl = () => {
-    var name = window.location.href.split("/")[4];
-    this.QuantityGraph(name);
-  };
-
-  QuantityGraph = (name) => {
-    const quantityStorage = name + "Q";
-    if (localStorage.getItem(quantityStorage) === null) {
-      this.setState({ series: [] });
-    } else {
-      var data = JSON.parse(localStorage.getItem(quantityStorage));
-    }
-    const quantityData = data.map(({ quantity }) => parseInt(quantity, 10));
-    const xAxis = data.map((data) => data.quantityChangeDate);
-    this.setState({
-      options: {
-        title: {
-          text: name
-        },
-        series: [
-          {
-            data: [...quantityData]
-          }
-        ],
-        xAxis: {
-          categories: xAxis
-        }
-      }
-    });
-  };
-
   render() {
     var product = this.props.product;
     return (

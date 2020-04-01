@@ -58,7 +58,7 @@ class Products extends React.Component {
                     changeQuantity={value.changeQuantity}
                     changePrice={value.changePrice}
                     disableProduct={value.disableProduct}
-                    saveList={value.saveList}
+                    save={value.save}
                   />
                 );
               });
@@ -85,7 +85,7 @@ class Products extends React.Component {
                       <Link to="/create">
                         <button
                           className="product-button create-new-item "
-                          onClick={value.saveList}
+                          onClick={value.save}
                           products={value.products}
                         >
                           CREATE NEW ITEM
@@ -117,7 +117,7 @@ class Products extends React.Component {
                   <Route
                     exact
                     path="/products/:id/quantityhistory"
-                    component={() => <View currentView={value.currentView} />}
+                    component={() => <View />}
                   />
                 </Router>
               </React.Fragment>

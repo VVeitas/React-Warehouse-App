@@ -14,11 +14,16 @@ class PriceHistory extends React.Component {
     this.getProductNameUrl();
   };
 
+  /*This function will get name of the product from the url that will be used 
+  for getting the item history from local storage and using that information 
+  in graph.*/
   getProductNameUrl = () => {
     var name = window.location.href.split("/")[4];
     this.PriceGraph(name);
   };
 
+  /* Here we will get products information from local storage which will be
+  displayed in graph. */
   PriceGraph = (name) => {
     const priceStorage = name + "P";
     if (localStorage.getItem(priceStorage) === null) {

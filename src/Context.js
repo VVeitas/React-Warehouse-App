@@ -10,6 +10,8 @@ class ProductProvider extends React.Component {
     };
   }
 
+  /*On components mount, array from a local storage will be used for products
+  list, if it exists.  If not, it will retrieve empty array. */
   UNSAFE_componentWillMount = () => {
     if (localStorage.getItem("inventory") === null) {
       this.setState({ products: [] });
@@ -19,6 +21,8 @@ class ProductProvider extends React.Component {
     }
   };
 
+  /*This function will use concat() to include recently created product to 
+  products array. After that it will fire functions to save it to local storage. */
   createProduct = (product) => {
     const update = this.state.products.concat(product);
     const index = this.state.products.length;
@@ -30,21 +34,27 @@ class ProductProvider extends React.Component {
     });
   };
 
+  /*Save function for products array to local storage. At the same time using
+  setState function to rerender component to display newly made array when
+  new product is created.*/
   saveLocalStorage = () => {
-    localStorage.setItem("inventory", JSON.stringify(this.state.products));
-  };
-
-  saveList = () => {
     this.setState({ products: this.state.products }, () => {
-      this.saveLocalStorage();
+      localStorage.setItem("inventory", JSON.stringify(this.state.products));
     });
   };
 
+  /*Quantity and price save function to seperate local storages. */
   saveChanges = (index, name) => {
     this.saveQuantity(index, name);
     this.savePrice(index, name);
   };
 
+  /*This function will save changes made to quantity. At the same time it will 
+  save the date that change was made at. There are some additional code lines 
+  that will control products local storage to keep only 5 items, which
+  will be shown at graph in preview section. Additionally, this function will
+  prevent duplicating same product in local storage if the input fields was the 
+  same as before on save. */
   saveQuantity = (index, name) => {
     const product = this.state.products[index];
     const date = new Date();
@@ -73,9 +83,10 @@ class ProductProvider extends React.Component {
       }
       localStorage.setItem(name1, JSON.stringify(productArray));
     }
-    this.saveList();
+    this.saveLocalStorage();
   };
 
+  /*Same function as saveQuantity(), but this one applies for product price. */
   savePrice = (index, name) => {
     const product = this.state.products[index];
     const date = new Date();
@@ -103,9 +114,12 @@ class ProductProvider extends React.Component {
       }
       localStorage.setItem(name1, JSON.stringify(productArray));
     }
-    this.saveList();
+    this.saveLocalStorage();
   };
 
+  /*This function will delete product from array by taking its index number
+  from product component as a prop. It will also delete that exact product from 
+  local storage. */
   deleteProduct = (index, name) => {
     this.state.products.splice(index, 1);
     const productsArray = this.state.products;
@@ -116,6 +130,8 @@ class ProductProvider extends React.Component {
     });
   };
 
+  /*This function will declare which of the product will be displayed at the
+  moment (this information will be used by Edit and View displays)*/
   viewProduct = (name, product, index) => {
     this.setState({
       product: product,
@@ -123,14 +139,8 @@ class ProductProvider extends React.Component {
     });
   };
 
-  editProduct = (product) => {
-    const productsArray = this.state.products;
-    const index = this.state.index;
-    productsArray.splice([index], 1, product);
-    this.saveQuantity(index, product.name);
-    this.savePrice(index, product.name);
-  };
-
+  /*These two functions will retrieve input values from products list and will
+  update that information in products array. */
   changeQuantity = (e, index) => {
     this.state.products[index].quantity = e.target.value;
   };
@@ -139,6 +149,17 @@ class ProductProvider extends React.Component {
     this.state.products[index].price = e.target.value;
   };
 
+  /*Will take edited product values and update current array with newly edited
+  product and save all of that to local storage. */
+  editProduct = (product) => {
+    const productsArray = this.state.products;
+    const index = this.state.index;
+    productsArray.splice([index], 1, product);
+    this.saveQuantity(index, product.name);
+    this.savePrice(index, product.name);
+  };
+
+  /*This function will declare which product to disable by taking index by prop. */
   disableProduct = (index) => {
     if (this.state.products[index].active) {
       this.state.products[index].active = false;
@@ -153,15 +174,11 @@ class ProductProvider extends React.Component {
         value={{
           products: this.state.products,
           product: this.state.product,
+          index: this.state.index,
           createProduct: this.createProduct,
           save: this.saveLocalStorage,
-          saveList: this.saveList,
           deleteProduct: this.deleteProduct,
           editProduct: this.editProduct,
-          edit2Product: this.edit2Product,
-          edit: this.state.edit,
-          index: this.state.index,
-          editSave: this.editSave,
           changeQuantity: this.changeQuantity,
           changePrice: this.changePrice,
           disableProduct: this.disableProduct,

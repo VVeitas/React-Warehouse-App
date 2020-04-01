@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ProductConsumer } from "./Context";
 import "./App.css";
 import Default from "./Components/Default";
 import Products from "./Components/Products";
-import { ProductConsumer } from "./Context";
 
 class App extends React.Component {
   constructor(props) {

@@ -10,6 +10,9 @@ class Product extends React.Component {
     this.state = {};
   }
 
+  /*These two functions is for the input fields that is in the products list. 
+  It will be fired from onChange event handler. Information from input fields 
+  will update products quantity and price both in list and local storage. */
   changeQuantity = (e, index, name) => {
     this.props.changeQuantity(e, index, name);
   };
@@ -18,11 +21,14 @@ class Product extends React.Component {
     this.props.changePrice(e, index);
   };
 
+  /*This will send index of the product we want to disable to the function in 
+  context file. */
   disableProduct = (index) => {
     this.props.disableProduct(index);
-    this.props.saveList();
+    this.props.save();
   };
 
+  /*This will declare whether to apply gray cover to disabled product. */
   style = () => {
     if (this.props.product.active === true) {
       return "enabled";
@@ -31,6 +37,7 @@ class Product extends React.Component {
     }
   };
 
+  /*Function to highlight products which have quantity of 0. */
   highligthStyle = () => {
     if (this.props.product.quantity <= 0) {
       return "highlight product-container";

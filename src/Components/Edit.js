@@ -15,6 +15,8 @@ class Edit extends React.Component {
     this.color = React.createRef();
     this.state = {};
   }
+  /*Gets information from input fields and then edits that product. Fires alert 
+  if any of input fields are empty*/
   handleSubmit = (e) => {
     if (
       this.name.current.value === "" ||
@@ -64,7 +66,7 @@ class Edit extends React.Component {
                 <h2>Edit item</h2>
                 <form>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Name</span>
                     </div>
                     <div className="col-6">
@@ -77,7 +79,7 @@ class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Quantity</span>
                     </div>
                     <div className="col-6">
@@ -90,7 +92,7 @@ class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Price, €</span>
                     </div>
                     <div className="col-6">
@@ -103,7 +105,7 @@ class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">EAN</span>
                     </div>
                     <div className="col-6">
@@ -116,7 +118,7 @@ class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Type</span>
                     </div>
                     <div className="col-6">
@@ -129,7 +131,7 @@ class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Weight, kg</span>
                     </div>
                     <div className="col-6">
@@ -142,7 +144,7 @@ class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-6 collumn ">
+                    <div className="col-6 collumn">
                       <span className="text-collumn bold">Color</span>
                     </div>
                     <div className="col-6">

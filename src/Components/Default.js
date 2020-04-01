@@ -15,7 +15,7 @@ class Default extends React.Component {
       <ProductConsumer>
         {(value) => (
           <React.Fragment>
-            <div className="list1"></div>
+            <div className="cover"></div>
 
             <div className="containers default-container">
               <h2 className="view-h2">Page Not Found </h2>
