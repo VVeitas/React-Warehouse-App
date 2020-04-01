@@ -7,13 +7,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "acorn": "^7.1.1",
     "highcharts": "^8.0.4",
     "highcharts-react-official": "^3.0.0",
     "react": "^16.13.0",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +34,8 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie 11"
     ]
   }
 }

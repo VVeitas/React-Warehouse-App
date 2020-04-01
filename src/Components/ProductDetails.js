@@ -141,9 +141,11 @@ class ProductDetails extends React.Component {
                   </div>
                 </div>
                 <Link to="/products">
-                  <button className="container-buttons">
-                    <span className="bold">Back</span>
-                  </button>
+                  <div className="row">
+                    <button className="container-buttons">
+                      <span className="bold">Back</span>
+                    </button>
+                  </div>
                 </Link>
               </div>
             </div>
